@@ -541,7 +541,7 @@ class block_gdata extends block_list {
             }
         }
 
-        print $OUTPUT->box_start('boxaligncenter boxwidthwide', '', true);
+        print $OUTPUT->box_start('boxaligncenter boxwidthwide', '', array());
         print $filter->display_add();
         print $filter->display_active();
         if (empty($table->totalrows)) {

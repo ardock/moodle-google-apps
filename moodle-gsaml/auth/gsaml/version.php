@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see http://opensource.org/licenses/gpl-3.0.html.
  * 
- * @package block_gdata
+ * @package block_gsaml
  * @copyright  Copyright (c) 2009 Moodlerooms Inc. {@link http://www.moodlerooms.com}
  * @license    http://opensource.org/licenses/gpl-3.0.html     GNU Public License
  * @author Mark Nielsen
@@ -25,5 +25,5 @@ $plugin->version = 2014042201;
 $plugin->requires = 2010112400;
 $plugin->maturity = MATURITY_BETA;
 $plugin->release = '1.6.1 (Build: 2014042201)';
-$plugin->component = 'block_gdata';
+$plugin->component = 'block_gsaml';
 $plugin->cron = 0;

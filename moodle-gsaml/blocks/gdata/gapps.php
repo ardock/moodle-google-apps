@@ -80,7 +80,7 @@ class blocks_gdata_gapps {
      *
      * @var string
      **/
-    const PASSWORD_HASH_FUNCTION = 'MD5';
+    const PASSWORD_HASH_FUNCTION = null;
 
     /**
      * User sync status: Never been synced
@@ -259,7 +259,7 @@ class blocks_gdata_gapps {
         if ($gappsuser !== NULL) {
             $this->gapps_delete_user($gappsuser);
         }
-        $this->moodle_delete_user($moodleuser->id);
+        $this->moodle_delete_user($moodleuser);
     }
 
     /**
@@ -739,7 +739,14 @@ class blocks_gdata_gapps {
      * @return boolean
      **/
     public static function user_deleted_event($user) {
-        return self::event_handler('user_deleted', $user);
+        try{
+            $gapps = new blocks_gdata_gapps();
+            $gapps->delete_user($user->id, $user->username);
+            return true;
+        }
+        catch (blocks_gdata_exception $e) {
+            return false;
+        }
     }
 
     /**
@@ -842,6 +849,25 @@ class blocks_gdata_gapps {
         }
         // Clear out clients array
         $clients = array();
+    }
+
+    /**
+    * Events API Hook for event 'user_created'
+    *
+    * The user is created in Google Apps when
+    * the admin creates an user in Moodle
+    *
+    * @param object $user Moodle user record object
+    * @return boolean
+    **/
+    public static function user_created_event($user) {
+        try {
+            $gapps = new blocks_gdata_gapps();
+            $gapps ->create_user($user, $checkexists = true);
+            return true;
+        } catch (blocks_gdata_exception $e) {
+            return false;   
+        }
     }
 } // END class blocks_gdata_gapps
 

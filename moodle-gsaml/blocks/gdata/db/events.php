@@ -42,6 +42,12 @@ $handlers = array(
         'schedule'        => 'instant'
     ),
 
+    'user_created' => array(
+        'handlerfile'     => '/blocks/gdata/gapps.php',
+        'handlerfunction' => array('blocks_gdata_gapps', 'user_created_event'),
+        'schedule'        => 'instant'
+    ),
+
     'password_changed' => array(
         'handlerfile'     => '/blocks/gdata/gapps.php',
         'handlerfunction' => array('blocks_gdata_gapps', 'password_changed_event'),
